@@ -89,8 +89,9 @@ class ShiftingArray <T> {
 	 * @param times
 	 */
 	public void shiftLeft(int times){
-		T tmp = this.array[0];
+		
 		while(times > 0){
+			T tmp = this.array[0];
 			for(int i=0; i<length-1; i++){
 				this.array[i] =  this.array[i+1];
 			}
@@ -106,8 +107,9 @@ class ShiftingArray <T> {
 	 * @param times
 	 */
 	public void shiftRight(int times){
-		T tmp = this.array[length-1];
+		
 		while(times > 0 ){
+			T tmp = this.array[length-1];
 			for(int i=length-1; i>0; i--){
 				this.array[i] =  this.array[i-1];
 			}
