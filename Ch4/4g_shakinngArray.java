@@ -89,14 +89,29 @@ class ShiftingArray <T> {
 	 * @param times
 	 */
 	public void shiftLeft(int times){
-		
-		while(times > 0){
+		this.leftIndex -= times;
+		//System.out.println("lefted, leftIndex : " + this.leftIndex);
+		int moveCnt = times % (this.length);
+		while(moveCnt > 0){
 			T tmp = this.array[0];
 			for(int i=0; i<length-1; i++){
 				this.array[i] =  this.array[i+1];
 			}
 			this.array[length-1] = tmp;
-			times--;
+			moveCnt--;
+			
+			
+		/*
+		int moveCnt = times % (this.length);
+		for(int i=0; i<this.length; i++){
+			int tmp =0;
+			if(moveCnt == this.length-1){
+				return;
+			}else if(){
+				tmp = 
+			}
+		}
+		*/
 		}
 		
 	}
@@ -107,15 +122,18 @@ class ShiftingArray <T> {
 	 * @param times
 	 */
 	public void shiftRight(int times){
-		
-		while(times > 0 ){
+		this.leftIndex += times;
+		//System.out.println("righted, leftIndex : " + this.leftIndex);
+		int moveCnt = times % (this.length);
+		while(moveCnt > 0){
 			T tmp = this.array[length-1];
 			for(int i=length-1; i>0; i--){
 				this.array[i] =  this.array[i-1];
 			}
 			this.array[0] = tmp;
-			times--;
+			moveCnt--;
 		}
+		
 		
 	}
 
@@ -124,9 +142,13 @@ class ShiftingArray <T> {
 	 */
 	public void initializePosition()
 	{
-		/*
-		for(int i=0; i<length; i++){
-			this.array[i] = this.arrayInit[i];
-		}	*/
+		//System.out.println("leftIndex : " + this.leftIndex);
+		if(this.leftIndex == 0){
+			return;
+		} else if(this.leftIndex < 0){
+			this.shiftRight(Math.abs(this.leftIndex));
+		} else{
+			this.shiftLeft(Math.abs(this.leftIndex));
+		}
 	}
 }
