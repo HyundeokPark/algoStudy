@@ -52,7 +52,13 @@ class KaingCalendar
 	 */
 	public int getXbyIndex(int index)
 	{
-		
+		int x =0;
+		if(index % this.M ==0){
+			x = this.M;
+		}else{
+			x = index % this.M;
+		}
+		return x;
 	}
 
 	/**
@@ -63,9 +69,29 @@ class KaingCalendar
 	 */
 	public int getYByIndex(int index)
 	{
-		
+		int y = 0;
+		if(index % this.N ==0){
+			y =this.N;
+		}else{
+			y = index % this.N;
+		}
+		return y;
 	}
 
+	public int getLCM(int x, int y){
+		int gcd = this.getGCD(x,y);
+		return (x*y) / gcd;
+	}
+	
+	public int getGCD(int x, int y){
+	  int tmp = 0;
+		while(y!=0){
+			tmp = x % y;
+			x =y;
+			y =tmp;
+		}
+		return x;
+	}
 	/**
 	 *
 	 *
@@ -76,25 +102,16 @@ class KaingCalendar
 	 */
 	public int getIndex(int x, int y)
 	{
-		/*
-	M,N의 배수들 +x,y의 값이 같은 값이 연도인것은 알았으나!.... 이것은 최소M,N이 각각 최소 1바퀴 이상씩 돌았다는 가정하에!......
-	*0을 포함한 배수들이면 1회차에도 구할수있다!!!
-	M과 N의 최대공약수와 최소공배수를 구해서 배수의 마지막까지 나열!
-		*/
-		int lcd =0; // 최소공배수
-		int gcm =0; // 최대공약수
-		
-		while(x !=0){
-			int tmp = x%y;
-			x =y;
-			y =tmp;
+		//최소공배수만금 횟수가 필요!!!
+		int lcm = this.getLCM(this.M,this.N);
+		//System.out.println("lcm : " + lcm);
+		for(int i=1; i<=lcm; i++){
+			//System.out.println("24X "+ this.getXbyIndex(24));
+			//System.out.println("24Y "+ this.getYByIndex(24));
+			if(x ==this.getXbyIndex(i)  && y == this.getYByIndex(i)){
+				return i;
+			}
 		}
-		
-		for(int i=0; i<?; i++){
-			
-		}
-		for(int i=0; i<?; i++){
-			
-		}
+		return -1;
 	}
 }
