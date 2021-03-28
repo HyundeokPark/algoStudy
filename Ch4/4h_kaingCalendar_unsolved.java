@@ -103,13 +103,20 @@ class KaingCalendar
 	public int getIndex(int x, int y)
 	{
 		//최소공배수만금 횟수가 필요!!!
-		int lcm = this.getLCM(this.M,this.N);
+		//int lcm = this.getLCM(this.M,this.N);
 		//System.out.println("lcm : " + lcm);
-		for(int i=1; i<=lcm; i++){
-			//System.out.println("24X "+ this.getXbyIndex(24));
-			//System.out.println("24Y "+ this.getYByIndex(24));
-			if(x ==this.getXbyIndex(i)  && y == this.getYByIndex(i)){
+		/*for(int i=1; i<=this.M*this.N; i++){
+			//System.out.println("24X "+ this.getXbyIndex(40000));
+			//System.out.println("24Y "+ this.getYByIndex(40001));
+			if(x == this.getXbyIndex(i)  && y == this.getYByIndex(i)){
 				return i;
+			}
+		}*/
+		for (int index = x; index <= M * N; index += M){
+			// 왼쪽이 x인 모든 날짜에 대해 
+			if (getYByIndex(index) == y) {
+				// 오른쪽이 y인 날짜가 존재한다면 반환한다
+				return index;
 			}
 		}
 		return -1;
