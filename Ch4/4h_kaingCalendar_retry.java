@@ -52,13 +52,7 @@ class KaingCalendar
 	 */
 	public int getXbyIndex(int index)
 	{
-		int x =0;
-		if(index % this.M ==0){
-			x = this.M;
-		}else{
-			x = index % this.M;
-		}
-		return x;
+		return (index-1) % M+1; 
 	}
 
 	/**
@@ -69,29 +63,9 @@ class KaingCalendar
 	 */
 	public int getYByIndex(int index)
 	{
-		int y = 0;
-		if(index % this.N ==0){
-			y =this.N;
-		}else{
-			y = index % this.N;
-		}
-		return y;
+		return (index-1) % N+1;
 	}
 
-	public int getLCM(int x, int y){
-		int gcd = this.getGCD(x,y);
-		return (x*y) / gcd;
-	}
-	
-	public int getGCD(int x, int y){
-	  int tmp = 0;
-		while(y!=0){
-			tmp = x % y;
-			x =y;
-			y =tmp;
-		}
-		return x;
-	}
 	/**
 	 *
 	 *
@@ -102,20 +76,9 @@ class KaingCalendar
 	 */
 	public int getIndex(int x, int y)
 	{
-		//최소공배수만금 횟수가 필요!!!
-		//int lcm = this.getLCM(this.M,this.N);
-		//System.out.println("lcm : " + lcm);
-		/*for(int i=1; i<=this.M*this.N; i++){
-			//System.out.println("24X "+ this.getXbyIndex(40000));
-			//System.out.println("24Y "+ this.getYByIndex(40001));
-			if(x == this.getXbyIndex(i)  && y == this.getYByIndex(i)){
-				return i;
-			}
-		}*/
-		for (int index = x; index <= M * N; index += M){
-			// 왼쪽이 x인 모든 날짜에 대해 
-			if (getYByIndex(index) == y) {
-				// 오른쪽이 y인 날짜가 존재한다면 반환한다
+		//이런 알고리즘을 문제만 보고 생각 할 수있다고?... 외우는거 아닐까?...
+		for(int index =x; index<=M*N; index+=M){
+			if(this.getYByIndex(index) == y){
 				return index;
 			}
 		}
